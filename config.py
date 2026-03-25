@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import os
 
 from dotenv import load_dotenv
@@ -55,3 +56,15 @@ config = {
     "testing": TestingConfig,
     "default": DevelopmentConfig,
 }
+=======
+import pymysql
+
+def _get_connection():
+    try:
+        connection = pymysql.connect(host='localhost', user='root', password='',
+                                     database= 'Greeneery')
+        return connection
+    except:
+        print("Error connecting to the database")
+        return None
+>>>>>>> 86ecd722e4748255d9b44e753f941c89294d1552
