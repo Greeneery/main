@@ -12,37 +12,37 @@ def browsePage():
     return render_template("browsePage.html")
 
 @views.route('/contact-page')
-def browsePage():
+def contactPage():
     return render_template("contactPage.html")
 
 @views.route('/check-out-page')
-def browsePage():
+def checkOutPage():
     return render_template("checkOutPage.html")
 
 @views.route('/detail-page')
-def browsePage():
+def detailPage():
     return render_template("detailPage.html")
 
 @views.route('/log-in-page')
-def browsePage():
+def logInPage():
     return render_template("logInPage.html")
 
 @views.route('/sign-up-page')
-def browsePage():
+def signUpPage():
     return render_template("signUpPage.html")
 
 @views.route('/favorites-page')
-def browsePage():
+def favoritesPage():
     return render_template("favoritesPage.html")
 
 @views.route('/cart-page')
-def browsePage():
+def cartPage():
     return render_template("cartPage.html")
 
 @views.route('/email-confirm-page')
-def browsePage():
+def emailConfirmPage():
     return render_template("emailConfirmPage.html")
 
 @views.route('/purchase-confirm-page')
-def browsePage():
+def purchaseConfirmPage():
     return render_template("purchaseConfirmPage.html")
