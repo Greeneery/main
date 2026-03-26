@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Prata&family=Cormorant+Garamond&display=swap');
+
+/* General styles */
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background-color: #FFFDED;
+    color: #004C13;
+    margin: 0;
+    padding-top: 70px;
+
+}
+
+/* Navbar styles */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5% 2%;
+    background-color: #FFFFFF; 
+    border-bottom: 1px solid #f0f0e0;
+
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.logo {
+    font-size: 100px;
+    font-family: 'Nanum Brush Script', 'Prata', 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-style: italic;
+    color: #4D6B3B;
+    text-decoration: none;
+}
+
+.logo:hover {
+    color: #76A25C;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 40px; 
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #004C13;
+    font-size: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 650;
+    letter-spacing: 0.5px;
+}
+
+.nav-links a:hover {
+    color: #76A25C;
+}
+
+.nav-icons {
+    display: flex;
+    gap: 20px;
+    font-size: 18px;
+}
+
+.nav-icons a {
+    text-decoration: none;
+    color: #004C13;
+}
+
+.nav-icons a:hover {
+    color: #76A25C;
+}
+
+.content-wrapper {
+    padding: 40px 5%;
+}
+
+/* Footer styles */
+
+
+/* Home Page styles */
+
+.home-background {
+    background-image: url('../css/images/homeBG.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    color: white;
+}
+
+.welcome {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 100;
+    font-size: 100px;
+}
+
+.description {
+    font-family: 'Cormorant Garamond', serif;
+    color: #FBFBF3;
+    font-weight: 35;
+    font-size: 35px;
+}
+
+.home-text {
+    text-align: left;
+    padding: 100px 80px;
+}
+
+.home-text .welcome {
+    font-size: 100px;
+    margin-bottom: -10px;
+}
+
+.home-text .description {
+    font-size: 35px;
+    color: #FBFBF3;
+}
