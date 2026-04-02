@@ -90,7 +90,7 @@ body {
 /* Home Page styles */
 
 .home-background {
-    background-image: url('../src/images/homeBG.jpg');
+    background-image: url('../images/homeBG.jpg');
     background-size: cover;
     background-position: center;
     min-height: 100vh;
