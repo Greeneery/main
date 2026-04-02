@@ -1,12 +1,12 @@
 <aside class="filter-sidebar">
     <h3>Filter</h3>
     <ul class="filter-list">
-        <li><a href="{{ url_for('browse', light='low') }}">Indoor Light</a></li>
-        <li><a href="{{ url_for('browse', size='large') }}">Plant Size</a></li>
-        <li><a href="{{ url_for('browse', difficulty='easy') }}">Difficulty</a></li>
-        <li><a href="{{ url_for('browse', pet='true') }}">Pet-Friendly</a></li>
-        <li><a href="{{ url_for('browse', air='true') }}">Air-Purifier</a></li>
+        <li><a href="{{ url_for('views.browsePage', light='low') }}">Indoor Light</a></li>
+        <li><a href="{{ url_for('views.browsePage', size='large') }}">Plant Size</a></li>
+        <li><a href="{{ url_for('views.browsePage', difficulty='easy') }}">Difficulty</a></li>
+        <li><a href="{{ url_for('views.browsePage', pet='true') }}">Pet-Friendly</a></li>
+        <li><a href="{{ url_for('views.browsePage', air='true') }}">Air-Purifier</a></li>
     </ul>
 
-    <a href="{{ url_for('browse') }}" class="clear-btn">CLEAR FILTERS</a>
+    <a href="{{ url_for('views.browsePage') }}" class="clear-btn">CLEAR FILTERS</a>
 </aside>
