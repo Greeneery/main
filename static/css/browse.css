@@ -32,6 +32,12 @@
     text-transform: uppercase;
     font-size: 14px;
     cursor: pointer;
+    color: #004C13;
+    transition: color 0.2s ease;
+}
+
+.filter-list li:hover {
+    color: #76A25C;
 }
 
 .clear-btn {
@@ -42,6 +48,16 @@
     margin-top: 20px;
     cursor: pointer;
     font-family: inherit;
+    color: #004C13;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+
+.clear-btn:hover {
+    background-color: #004C13;
+    color: #FFFFFF;
 }
 
 /* Main Content Area */
