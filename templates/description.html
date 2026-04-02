@@ -1,0 +1,51 @@
+{% extends 'include/layout.html' %}
+
+{% block content %}
+<div class="description-container">
+    <div class="product-visuals">
+        <img src="{{ url_for('static', filename='images/' + plant.image) }}" class="large-img">
+    </div>
+
+    <div class="product-info-panel">
+        <nav class="breadcrumb">Home / Indoor Plants / {{ plant.name }}</nav>
+        <h1>{{ plant.name }}</h1>
+        <h2 class="price">${{ plant.price }}</h2>
+
+        <p class="description-text">{{ plant.desc }}</p>
+
+        <div class="purchase-options">
+            <button class="add-to-cart">ADD TO BAG</button>
+            <button class="wishlist">♡</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .description-container {
+        display: flex;
+        /* Side-by-side layout like clothing sites */
+        gap: 50px;
+        padding: 5% 10%;
+    }
+
+    .large-img {
+        width: 100%;
+        border-radius: 4px;
+    }
+
+    .price {
+        font-size: 24px;
+        color: #4D6B3B;
+        margin-top: 0;
+    }
+
+    .add-to-cart {
+        background: #004C13;
+        color: white;
+        padding: 15px 40px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+</style>
+{% endblock %}
