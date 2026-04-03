@@ -11,8 +11,13 @@ def home():
 def browsePage():
     return render_template("browsePage.html")
 
-@views.route('/contact-page')
+@views.route('/contact-page', methods=['GET', 'POST'])
 def contactPage():
+    if request.method == 'POST':
+        user_name = request.form['name']
+        user_email = request.form['email']
+        user_message = request.form['user_message']
+        return redirect(url_for('views.emailConfirmPage'))
     return render_template("contactPage.html")
 
 @views.route('/check-out-page')
