@@ -28,19 +28,24 @@
 .filter-list li {
     padding: 15px 0;
     border-bottom: 1px solid #f0f0f0;
+}
+
+.filter-list li a {
+    text-decoration: none;
     font-weight: 600;
     text-transform: uppercase;
     font-size: 14px;
-    cursor: pointer;
     color: #004C13;
     transition: color 0.2s ease;
+    display: block;
 }
 
-.filter-list li:hover {
+.filter-list li a:hover {
     color: #76A25C;
 }
 
 .clear-btn {
+    display: block;
     width: 100%;
     background: none;
     border: 1px solid #004C13;
@@ -52,7 +57,10 @@
     font-weight: 600;
     font-size: 14px;
     text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
     transition: all 0.2s ease;
+    box-sizing: border-box;
 }
 
 .clear-btn:hover {
@@ -92,6 +100,11 @@
     transition: transform 0.2s;
     text-decoration: none;
     display: block;
+    color: inherit;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
 }
 
 /* 3. The TALL Image Fix */

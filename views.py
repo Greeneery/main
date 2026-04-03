@@ -46,3 +46,14 @@ def emailConfirmPage():
 @views.route('/purchase-confirm-page')
 def purchaseConfirmPage():
     return render_template("purchaseConfirmPage.html")
+
+@views.route('/description-page')
+def descriptionPage():
+    # Dummy plant data for now
+    plant = {
+        'name': 'Snake Plant',
+        'price': 25,
+        'desc': 'The Snake Plant is a hardy, low-maintenance plant perfect for beginners. It thrives in low light conditions and requires minimal watering.',
+        'image': 'homeBG.jpg'
+    }
+    return render_template("description.html", plant=plant)

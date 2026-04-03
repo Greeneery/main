@@ -14,7 +14,7 @@
 
         <div class="product-grid">
             {% for i in range(6) %}
-            <div class="product-card">
+            <a href="{{ url_for('views.descriptionPage') }}" class="product-card">
                 <div class="product-image">
                     <img src="{{ url_for('static', filename='images/homeBG.jpg') }}" alt="Plant Name">
                 </div>
@@ -23,7 +23,7 @@
                     <span class="product-price">$25</span>
                     <span class="favorite-icon">♥</span>
                 </div>
-            </div>
+            </a>
             {% endfor %}
         </div>
     </main>
