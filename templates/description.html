@@ -3,19 +3,43 @@
 {% block content %}
 <div class="description-container">
     <div class="product-visuals">
-        <img src="{{ url_for('static', filename='images/' + plant.image) }}" class="large-img">
+        <div class="main-image">
+            <img src="{{ url_for('static', filename='images/' + plant.image) }}" alt="{{ plant.name }}">
+        </div>
     </div>
 
     <div class="product-info-panel">
         <nav class="breadcrumb">Home / Indoor Plants / {{ plant.name }}</nav>
-        <h1>{{ plant.name }}</h1>
-        <h2 class="price">${{ plant.price }}</h2>
+        
+        <h1 class="product-title">{{ plant.name }}</h1>
+        <p class="product-price">${{ "%.2f"|format(plant.price) }}</p>
 
-        <p class="description-text">{{ plant.desc }}</p>
+        <div class="product-description">
+            <p>{{ plant.desc }}</p>
+        </div>
 
-        <div class="purchase-options">
-            <button class="add-to-cart">ADD TO BAG</button>
-            <button class="wishlist">♡</button>
+        <div class="plant-details">
+            <div class="detail-item">
+                <span class="detail-label">Light</span>
+                <span class="detail-value">{{ plant.light|default('Low to Bright Indirect') }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Water</span>
+                <span class="detail-value">{{ plant.water|default('Every 2-3 weeks') }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Size</span>
+                <span class="detail-value">{{ plant.size|default('Medium') }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Pet Friendly</span>
+                <span class="detail-value">{{ 'Yes' if plant.pet_friendly else 'No' }}</span>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-add-cart">ADD TO BAG</button>
+            <button class="btn-wishlist">♡</button>
         </div>
     </div>
 </div>
@@ -23,29 +47,146 @@
 <style>
     .description-container {
         display: flex;
-        /* Side-by-side layout like clothing sites */
-        gap: 50px;
-        padding: 5% 10%;
+        gap: 60px;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 40px;
     }
 
-    .large-img {
+    .product-visuals {
+        flex: 1;
+        max-width: 550px;
+    }
+
+    .main-image {
         width: 100%;
-        border-radius: 4px;
+        height: 600px;
+        overflow: hidden;
+        border-radius: 8px;
+        background: #f8f8f8;
     }
 
-    .price {
-        font-size: 24px;
+    .main-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .product-info-panel {
+        flex: 1;
+        max-width: 500px;
+    }
+
+    .breadcrumb {
+        font-size: 13px;
+        color: #888;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .product-title {
+        font-size: 36px;
+        font-family: 'Cormorant Garamond', serif;
+        color: #004C13;
+        margin: 0 0 15px 0;
+        font-weight: 600;
+    }
+
+    .product-price {
+        font-size: 28px;
         color: #4D6B3B;
-        margin-top: 0;
+        margin: 0 0 30px 0;
+        font-weight: 500;
     }
 
-    .add-to-cart {
+    .product-description {
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 35px;
+        font-size: 15px;
+    }
+
+    .plant-details {
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 25px 0;
+        margin-bottom: 35px;
+    }
+
+    .detail-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        font-size: 14px;
+    }
+
+    .detail-label {
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 13px;
+    }
+
+    .detail-value {
+        color: #333;
+        font-weight: 500;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 15px;
+    }
+
+    .btn-add-cart {
+        flex: 1;
         background: #004C13;
         color: white;
-        padding: 15px 40px;
         border: none;
+        padding: 16px 30px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
         cursor: pointer;
-        width: 100%;
+        transition: background 0.3s ease;
+        border-radius: 2px;
+    }
+
+    .btn-add-cart:hover {
+        background: #003a0f;
+    }
+
+    .btn-wishlist {
+        width: 55px;
+        background: white;
+        border: 1px solid #004C13;
+        color: #004C13;
+        font-size: 22px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+
+    .btn-wishlist:hover {
+        background: #004C13;
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .description-container {
+            flex-direction: column;
+            padding: 0 20px;
+        }
+
+        .product-visuals,
+        .product-info-panel {
+            max-width: 100%;
+        }
+
+        .main-image {
+            height: 400px;
+        }
     }
 </style>
 {% endblock %}
