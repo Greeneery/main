@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-
+from sql import execute_query
 
 views = Blueprint('views', __name__)
 
@@ -29,8 +29,16 @@ def browsePage():
     
     return render_template("browsePage.html", plants=plants)
 
-@views.route('/contact-page')
+@views.route('/contact-page', methods=['GET', 'POST'])
 def contactPage():
+    if request.method == 'POST':
+        user_name = request.form.get('name')
+        user_email = request.form.get('email')
+        user_message = request.form.get('user_message')
+        query = "INSERT INTO Contact_Submissions(name, email, messageText) VALUES (%s, %s, %s)"
+        params = (user_name, user_email, user_message)
+        execute_query(query, params, fetch='none')
+        return redirect(url_for('views.emailConfirmPage'))
     return render_template("contactPage.html")
 
 @views.route('/check-out-page')
