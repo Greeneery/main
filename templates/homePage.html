@@ -1,9 +1,16 @@
 {% extends 'include/layout.html' %}
 
 {% block content %}
-<div class="home-background"></div>
-<div class="home-text">
-    <h1 class="welcome">Welcome</h1>
-    <p class="description">Get yourself a plant</p>
+<section>
+<div class="home-background">
+    <div class="home-text">
+        <h1 class="welcome">Welcome</h1>
+        <p class="description">Get yourself a plant</p>
+    </div>
+</div>
+<section></section>
+
+<div class="home-content">
+    {% include 'include/popularBar.html' %}
 </div>
 {% endblock %}

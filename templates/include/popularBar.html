@@ -1,0 +1,165 @@
+<section class="popular-section">
+    <div class="popular-container">
+        <h2 class="popular-title">Popular Plants</h2>
+        
+        <div class="popular-scroll-wrapper">
+            <div class="popular-scroll">
+                {% if popular_plants %}
+                    {% for plant in popular_plants %}
+                    <a href="{{ url_for('views.descriptionPage', plant_id=plant.id) }}" class="popular-card">
+                        <div class="popular-image">
+                            <img src="{{ url_for('static', filename='images/' + plant.image) }}" alt="{{ plant.name }}">
+                        </div>
+                        <div class="popular-info">
+                            <span class="popular-name">{{ plant.name }}</span>
+                            <span class="popular-price">${{ "%.2f"|format(plant.price) }}</span>
+                        </div>
+                    </a>
+                    {% endfor %}
+                {% else %}
+                    <div style="text-align: center; padding: 40px; color: #666; font-style: italic;">
+                        No popular plants found. Database might not be initialized.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+   .popular-section {
+    background-color: #FFFDED;
+    padding: 60px 0;
+    position: relative;
+    min-height: 400px;
+
+    /* BREAKOUT FIX: Force full width to remove side borders */
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+    .popular-container {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .popular-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 42px;
+        color: #004C13;
+        text-align: center;
+        margin-bottom: 40px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .popular-scroll-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0 40px 0 40px;
+        scrollbar-width: none !important; /* Firefox */
+        -ms-overflow-style: none !important; /* IE and Edge */
+    }
+
+    /* Hide scrollbar completely in all browsers */
+    .popular-scroll-wrapper::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        background: transparent !important;
+    }
+    
+    .popular-scroll-wrapper::-webkit-scrollbar-track {
+        display: none !important;
+        background: transparent !important;
+    }
+    
+    .popular-scroll-wrapper::-webkit-scrollbar-thumb {
+        display: none !important;
+        background: transparent !important;
+    }
+
+    .popular-scroll {
+        display: flex;
+        gap: 25px;
+        padding-bottom: 0;
+    }
+
+    .popular-card {
+        flex: 0 0 280px;
+        background-color: #FFFFFF;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: block;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .popular-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0, 76, 19, 0.15);
+    }
+
+    .popular-image {
+        width: 100%;
+        height: 320px;
+        overflow: hidden;
+    }
+
+    .popular-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .popular-card:hover .popular-image img {
+        transform: scale(1.05);
+    }
+
+    .popular-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 20px;
+        background: #FFFFFF;
+    }
+
+    .popular-name {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: #004C13;
+    }
+
+    .popular-price {
+        font-size: 18px;
+        color: #4D6B3B;
+        font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+        .popular-section {
+            padding: 40px 0;
+        }
+
+        .popular-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .popular-scroll-wrapper {
+            padding: 0 20px 20px 20px;
+        }
+
+        .popular-card {
+            flex: 0 0 240px;
+        }
+
+        .popular-image {
+            height: 280px;
+        }
+    }
+</style>

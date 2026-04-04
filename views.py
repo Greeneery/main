@@ -5,7 +5,34 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def home():
-    return render_template("homePage.html")
+    popular_plants = []
+    
+    try:
+        # Fetch popular plants from database - you might want to add a 'popular' column or use some criteria
+        query = "SELECT * FROM plants ORDER BY RAND() LIMIT 6"  # Random 6 plants as popular
+        popular_plants = execute_query(query, fetch="all")
+    except Exception as e:
+        print(f"Database error: {e}")
+        popular_plants = []
+    
+    # If no plants in database, use dummy data with actual plant images
+    if not popular_plants:
+        plant_images = [
+            'Aloe_Plant.jpg', 'Calathea_Medallion.jpg', 'Fiddle_Plant.jpg',
+            'Snake_Plant.jpg', 'Spider_Plant.jpg', 'plant1.jpg'
+        ]
+        plant_names = [
+            'Aloe Plant', 'Calathea Medallion', 'Fiddle Plant',
+            'Snake Plant', 'Spider Plant', 'Monstera'
+        ]
+        plant_prices = [19.99, 34.99, 29.99, 24.99, 22.99, 39.99]
+        
+        popular_plants = [
+            {'id': i, 'name': plant_names[i-1], 'price': plant_prices[i-1], 'image': plant_images[i-1]}
+            for i in range(1, 7)
+        ]
+    
+    return render_template("homePage.html", popular_plants=popular_plants)
 
 @views.route('/browse-page')
 def browsePage():
