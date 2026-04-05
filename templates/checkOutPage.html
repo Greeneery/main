@@ -1,17 +1,19 @@
-{% include "include/layout.html" %}
+{% extends 'include/layout.html' %}
 
 {% block content %}
 
 <html>
-    <head>
-        <title>Checkout Page</title>
-    </head>
-    <body>
-        <h1>Welcome to the Checkout Page</h1>
-        <p>This is the main content area.</p>
-        <div style= "background-color: #4D6B3B; width: 50%; height: 100%; ">
-            <p style= "color: white;">Testing</p>
-        </div>
-    </body>
+    <div class="checkout-container">
+        <head>
+            <title>Checkout Page</title>
+        </head>
+        <body>
+            <h1>Welcome to the Checkout Page</h1>
+            <p>This is the main content area.</p>
+            <div style= "background-color: #4D6B3B; width: 50%; height: 100%; ">
+                <p style= "color: white;">Testing</p>
+            </div>
+        </body>
+    </div>
 
 {% endblock %}
