@@ -3,13 +3,18 @@
 {% block content %}
 
 <html>
-    <head>
-        <title> Purchase Confirmation Page</title>
-    </head>
-    <body>
-        <h1>Welcome to the Purchase Confirmation Page</h1>
-        <p>This is the main content area.</p>
-    </body>
+<main class="confirm-container">
+        <div class="confirm-card">
+            <h1>Thank you for your order!</h1>
+
+            <div class="confirm-text">
+                <p>Your order has been successfully placed.</p>
+                <p>We'll process your order and send you a confirmation email shortly.</p>
+            </div>
+
+            <a href="{{ url_for('views.browsePage') }}" class="browse-btn">Continue Shopping</a>
+        </div>
+</main>
 </html>
 
 {% endblock %}

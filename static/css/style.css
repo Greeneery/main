@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Long+Cang&family=Prata&family=Cormorant+Garamond&display=swap');
+
+/* General styles */
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background-color: #FFFDED;
+    color: #004C13;
+    margin: 0;
+    padding-top: 0px;
+    overflow-x: hidden;
+}
+
+/* Navbar styles */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #e8e8e8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+    height: 60px;
+}
+
+.logo {
+    font-size: 32px;
+    font-family: 'Long Cang';
+    font-weight: 100;
+    color: #4D6B3B;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.logo:hover {
+    color: #76A25C;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #004C13;
+    font-size: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.nav-links a:hover {
+    color: #76A25C;
+}
+
+.nav-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-icons a {
+    text-decoration: none;
+    color: #004C13;
+    display: flex;
+    align-items: center;
+}
+
+.nav-icons svg {
+    width: 22px;
+    height: 22px;
+}
+
+.nav-icons a:hover {
+    color: #76A25C;
+}
+
+.content-wrapper {
+    padding: 40px 5%;
+}
+
+/* Footer styles */
+
+
+/* Home Page styles */
+/* 
+.home-background {
+    background-image: url('../images/homeBG.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    
+} */
+
+.home-background {
+    background-image: url('../images/homeBG.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    
+    /* ADD THESE LINES TO FIX THE BORDERS */
+    width: 100vw; 
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    
+    display: flex;
+    align-items: center;
+}
+
+/* If your layout uses content-wrapper, this removes the padding just for the home page content */
+.home-page-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+}
+.home-text {
+    text-align: left;
+    padding: 0 60px;
+    color: white;
+}
+
+.home-content {
+    background-color: #FFFDED;
+    width: 100%;
+}
+
+.welcome {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(60px, 10vw, 120px);
+    margin: 0 0 10px 0;
+    color: white;
+}
+
+.description {
+    font-family: 'Cormorant Garamond', serif;
+    color: #FBFBF3;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(20px, 3vw, 35px);
+    margin: 0;
+}
+
+/* Contact Page Styles */
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 50px;
+}
+
+.info-card, .form-card {
+    background-color:#4D6B3B;
+    border-radius: 40px;
+    color: #FFFFFF;
+    padding: 100px;
+}
+
+.info-card {
+    flex: 1;
+    max-width: 400px;
+}
+.info-card h2 {
+    font-size: 3.5rem;
+    margin-top: -10px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.info-card p {
+    font-size: 1.7rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.info-card .detail {
+    margin-left: 34px; 
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.form-card {
+    flex: 2;
+    max-width: 600px;
+}
+
+.form-card h1 {
+    font-size: 3.5rem;
+    margin-top: 0;
+    letter-spacing: 2px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.input-group label {
+    font-style: italic;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+.input-group input, .input-group textarea {
+    background-color: #D9D9D9;
+    border: none;
+    border-radius: 15px;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-family: inherit;
+}
+
+.submit-btn {
+    background-color:#003121;
+    font-family: 'Prata', serif;
+    color: white;
+    border: none;
+    padding: 12px 45px;
+    border-radius: 15px;
+    float: right;
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 20px;
+    
+}
+.submit-btn:hover {
+    background-color: #007B53;
+}
+
+
+/* Confirmation Pages */
+
+.confirm-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.confirm-card {
+    background-color: white;
+    border: 3px solid #004C13; 
+    border-radius: 50px;
+    padding: 150px 200px;
+    text-align: center;
+    max-width: 700px;
+    width: 90%;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.9);
+}
+
+.confirm-card h1 {
+    color: #004C13;
+    font-size: 3.3rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.confirm-text {
+    color: #004C13;
+    font-size: 1.5rem;
+    font-weight: 450;
+    line-height: 0.6;
+    margin-bottom: 40px;
+}
+
+.browse-btn {
+    display: inline-block;
+    background-color: #003121;
+    color: white;
+    text-decoration: none;
+    padding: 15px 60px;
+    border-radius: 30px;
+    font-size: 1.3rem;
+    font-family: 'Prata', serif;
+}
+
+.browse-btn:hover {
+   background-color: #007B53;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 20px;
+        height: 55px;
+    }
+    
+    .logo {
+        font-size: 24px;
+    }
+    
+    .nav-links a {
+        font-size: 14px;
+    }
+    
+    .nav-icons svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .home-text {
+        padding: 0 30px;
+    }
+}
