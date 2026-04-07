@@ -70,7 +70,95 @@ def contactPage():
 
 @views.route('/check-out-page')
 def checkOutPage():
-    return render_template("checkOutPage.html")
+    user_id = 1  # TEMP until login system is done
+
+    # 1. Get cartID
+    cart_row = execute_query(
+        "SELECT cartID FROM Cart WHERE user_id = %s",
+        (user_id,),
+        fetch="one"
+    )
+
+    if not cart_row:
+        return render_template("checkOutPage.html", cart_items=[], total=0)
+
+    cart_id = cart_row["cartID"]
+
+    # 2. Load cart items
+    cart_items = execute_query("""
+        SELECT 
+            ci.cartItemID,
+            p.plantID,
+            p.commonName,
+            p.price,
+            ci.quantity,
+            (p.price * ci.quantity) AS subtotal
+        FROM Cart_Items ci
+        JOIN Plants p ON ci.plantID = p.plantID
+        WHERE ci.cartID = %s
+    """, (cart_id,), fetch="all")
+
+    # 3. Load total
+    total_row = execute_query("""
+        SELECT SUM(p.price * ci.quantity) AS total
+        FROM Cart_Items ci
+        JOIN Plants p ON ci.plantID = p.plantID
+        WHERE ci.cartID = %s
+    """, (cart_id,), fetch="one")
+
+    total = total_row["total"] if total_row["total"] else 0
+
+    return render_template("checkOutPage.html", cart_items=cart_items, total=total)
+
+@views.route('/process-checkout', methods=['POST'])
+def processCheckout():
+    user_id = 1  # TEMP
+
+    # 1. Get cartID
+    cart_row = execute_query(
+        "SELECT cartID FROM Cart WHERE user_id = %s",
+        (user_id,),
+        fetch="one"
+    )
+
+    if not cart_row:
+        return redirect(url_for('views.purchaseConfirmPage'))
+
+    cart_id = cart_row["cartID"]
+
+    # 2. Calculate total
+    total_row = execute_query("""
+        SELECT SUM(p.price * ci.quantity) AS total
+        FROM Cart_Items ci
+        JOIN Plants p ON ci.plantID = p.plantID
+        WHERE ci.cartID = %s
+    """, (cart_id,), fetch="one")
+
+    total = total_row["total"] if total_row["total"] else 0
+
+    # 3. Create order
+    order_id = execute_query("""
+        INSERT INTO Orders (user_id, totalAmount, isGift, shippingAddressAtTime)
+        VALUES (%s, %s, %s, %s)
+    """, (user_id, total, False, "Default Address"), fetch="none")
+
+    # 4. Insert order items
+    execute_query("""
+        INSERT INTO Order_Items (orderID, plantID, quantity, priceAtPurchase)
+        SELECT 
+            %s,
+            ci.plantID,
+            ci.quantity,
+            p.price
+        FROM Cart_Items ci
+        JOIN Plants p ON ci.plantID = p.plantID
+        WHERE ci.cartID = %s
+    """, (order_id, cart_id), fetch="none")
+
+    # 5. Clear cart
+    execute_query("DELETE FROM Cart_Items WHERE cartID = %s", (cart_id,), fetch="none")
+
+    return redirect(url_for('views.purchaseConfirmPage'))
 
 @views.route('/detail-page')
 def detailPage():
