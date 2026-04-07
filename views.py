@@ -72,25 +72,34 @@ def contactPage():
 def checkOutPage():
     user_id = 1  # TEMP until login system is done
 
-    # 1. Get cartID
+    # 1. Load user info
+    user = execute_query(
+        "SELECT first_name, last_name, email FROM user_base WHERE user_id = %s",
+        (user_id,),
+        fetch="one"
+    )
+
+    # 2. Get cartID
     cart_row = execute_query(
-        "SELECT cartID FROM Cart WHERE user_id = %s",
+        "SELECT cartID, isGift FROM Cart WHERE user_id = %s",
         (user_id,),
         fetch="one"
     )
 
     if not cart_row:
-        return render_template("checkOutPage.html", cart_items=[], total=0)
+        return render_template("checkOutPage.html", cart_items=[], total=0, user=user, isGift=False)
 
     cart_id = cart_row["cartID"]
+    isGift = cart_row["isGift"]
 
-    # 2. Load cart items
+    # 3. Load cart items
     cart_items = execute_query("""
         SELECT 
             ci.cartItemID,
             p.plantID,
             p.commonName,
             p.price,
+            p.imageUrl,
             ci.quantity,
             (p.price * ci.quantity) AS subtotal
         FROM Cart_Items ci
@@ -98,7 +107,7 @@ def checkOutPage():
         WHERE ci.cartID = %s
     """, (cart_id,), fetch="all")
 
-    # 3. Load total
+    # 4. Load total
     total_row = execute_query("""
         SELECT SUM(p.price * ci.quantity) AS total
         FROM Cart_Items ci
@@ -108,7 +117,11 @@ def checkOutPage():
 
     total = total_row["total"] if total_row["total"] else 0
 
-    return render_template("checkOutPage.html", cart_items=cart_items, total=total)
+    # 5. Delivery + shipping placeholders
+    delivery_method = "Standard Delivery (3–5 days)"
+    shipping_method = "Home Delivery"
+
+    return render_template("checkOutPage.html", cart_items=cart_items, total=total, user=user, isGift=isGift, delivery_method=delivery_method, shipping_method=shipping_method)
 
 @views.route('/process-checkout', methods=['POST'])
 def processCheckout():
