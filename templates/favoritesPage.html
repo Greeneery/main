@@ -1,15 +1,61 @@
-{% include "include/layout.html" %}
+{% extends "include/layout.html" %}
 
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/favorites.css') }}">
 
-<html>
-    <head>
-        <title>Favorites Page</title>
-    </head>
-    <body>
-        <h1>Welcome to the Favorites Page</h1>
-        <p>This is the main content area.</p>
-    </body>
-</html>
+<section class="favorites-page">
+    <h1 class="favorites-title">FAVORITES</h1>
 
+    <div class="favorites-wrapper">
+        <div class="fav-image-box">
+            <button type="button" class="arrow-btn">&#8592;</button>
+
+            <img src="{{ url_for('static', filename='images/Snake_Plant.jpg') }}" alt="Snake Plant">
+
+            <button type="button" class="arrow-btn">&#8594;</button>
+        </div>
+
+        <div class="fav-details-box">
+            <div class="fav-header">
+                <h2>Name</h2>
+                <p>$$$</p>
+            </div>
+
+            <div class="fav-notes">
+                <p>Add Notes Here...</p>
+            </div>
+
+            <div class="fav-actions">
+                <div class="qty-box">
+                    <button type="button" class="minus">−</button>
+                    <span class="qty-value">1</span>
+                    <button type="button" class="plus">+</button>
+                </div>
+
+                <button type="button" class="add-cart-btn">Add to cart</button>
+                <button type="button" class="heart-btn">❤</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+const minus = document.querySelector('.minus');
+const plus = document.querySelector('.plus');
+const value = document.querySelector('.qty-value');
+
+let qty = 1;
+
+plus.addEventListener('click', () => {
+    qty++;
+    value.textContent = qty;
+});
+
+minus.addEventListener('click', () => {
+    if (qty > 1) {
+        qty--;
+        value.textContent = qty;
+    }
+});
+</script>
 {% endblock %}
