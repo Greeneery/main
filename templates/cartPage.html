@@ -1,15 +1,92 @@
-{% include "include/layout.html" %}
+{% extends "include/layout.html" %}
 
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
 
-<html>
-    <head>
-        <title>Cart Page</title>
-    </head>
-    <body>
-        <h1>Welcome to the Cart Page</h1>
-        <p>This is the main content area.</p>
-    </body>
-</html>
+<section class="cart-page">
+    <div class="cart-wrapper">
+        <div class="cart-main">
+            <h1 class="cart-title">YOUR CART</h1>
 
+            <div class="cart-gift">
+                <input type="checkbox" id="gift-order">
+                <label for="gift-order">Is this order a gift?</label>
+            </div>
+
+            <div class="cart-list">
+                <div class="cart-item">
+                    <img src="{{ url_for('static', filename='images/Snake_Plant.jpg') }}" alt="Snake Plant" class="cart-image">
+
+                    <div class="cart-details">
+                        <h2>Plant 1</h2>
+                        <button type="button" class="remove-btn">Remove</button>
+                    </div>
+
+                    <p class="cart-price">$00</p>
+
+                    <div class="cart-qty">
+                        <button type="button" class="minus">−</button>
+                        <span class="qty-value">1</span>
+                        <button type="button" class="plus">+</button>
+                    </div>
+                </div>
+
+                <div class="cart-item">
+                    <img src="{{ url_for('static', filename='images/Snake_Plant.jpg') }}" alt="Snake Plant" class="cart-image">
+
+                    <div class="cart-details">
+                        <h2>Plant 2</h2>
+                        <button type="button" class="remove-btn">Remove</button>
+                    </div>
+
+                    <p class="cart-price">$00</p>
+
+                    <div class="cart-qty">
+                        <button type="button" class="minus">−</button>
+                        <span class="qty-value">1</span>
+                        <button type="button" class="plus">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="cart-summary">
+            <h2>Order Summary</h2>
+
+            <div class="summary-line">
+                <span>Subtotal</span>
+                <span>$00</span>
+            </div>
+
+            <div class="summary-line">
+                <span>Total</span>
+                <span>$00</span>
+            </div>
+
+            <a href="/check-out-page" class="checkout-btn">Proceed to Checkout</a>
+        </aside>
+    </div>
+</section>
+
+<script>
+document.querySelectorAll('.cart-item').forEach(item => {
+    const minus = item.querySelector('.minus');
+    const plus = item.querySelector('.plus');
+    const value = item.querySelector('.qty-value');
+
+    let qty = 1;
+
+    plus.addEventListener('click', () => {
+        qty++;
+        value.textContent = qty;
+    });
+
+    minus.addEventListener('click', () => {
+        if (qty > 1) {
+            qty--;
+            value.textContent = qty;
+        }
+    });
+});
+</script>
 {% endblock %}
